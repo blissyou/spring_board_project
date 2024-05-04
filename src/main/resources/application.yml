@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/BOARD?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      platform: mysql
