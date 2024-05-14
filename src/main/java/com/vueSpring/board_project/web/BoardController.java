@@ -21,19 +21,18 @@ import java.util.List;
 public class BoardController{
     private final BoardService boardService;
 
-    @GetMapping("/list")
-    public Header<List<BoardDto>> BoardList(
-            @PageableDefault(sort = {"idx"})Pageable pageable
-            ){
+    @GetMapping("/")
+    public Header<List<BoardDto>> boardList(
+            @PageableDefault(sort = {"idx"}) Pageable pageable
+    ) {
         return boardService.getBoardList(pageable);
     }
-
     @GetMapping("/{id}")
-    public BoardDto getBoard(@PathVariable Long id){
+    public BoardDto getBoard(@PathVariable Long id) {
         return boardService.getBoard(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("/list")
     public BoardEntity create(@RequestBody BoardDto boardDto){
         return boardService.create(boardDto);
     }
