@@ -26,30 +26,28 @@ public class BoardService {
     /**
      * 게시글 목록 가져오기
      */
-    public Header<List<BoardDto>> getBoardList(Pageable pageable) {
+    public Header<List<BoardDto>> getBoardList(Pageable pageable){
         List<BoardDto> dtos = new ArrayList<>();
 
         Page<BoardEntity> boardEntities = boardRepository.findAllByOrderByIdxDesc(pageable);
-        for (BoardEntity entity : boardEntities) {
+        for(BoardEntity entity : boardEntities){
             BoardDto dto = BoardDto.builder()
                     .idx(entity.getIdx())
                     .author(entity.getAuthor())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
-                    .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd:mm:ss")))
                     .build();
-
             dtos.add(dto);
         }
-
         Pagination pagination = new Pagination(
                 (int) boardEntities.getTotalElements()
-                , pageable.getPageNumber() + 1
+                , pageable.getPageNumber()+1
                 , pageable.getPageSize()
-                , 10
+                ,10
         );
+        return Header.OK(dtos,pagination);
 
-        return Header.OK(dtos, pagination);
     }
 
 
