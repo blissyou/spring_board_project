@@ -5,9 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import org.springframework.cglib.core.Local;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Data
